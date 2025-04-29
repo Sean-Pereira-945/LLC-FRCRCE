@@ -1,106 +1,81 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>LLCFRCRCE - Course Registration Platform</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
 </head>
-<body>
+<body style="font-family: Arial, sans-serif; background-color: #f7f7f7; color: #222; padding: 20px; max-width: 900px; margin: auto;">
 
-<header class="center">
-  <img src="https://user-images.githubusercontent.com/000000/placeholder-banner.png" alt="LLCFRCRCE Banner" style="width:100%; max-width:800px;">
-  <h1>📚 LLCFRCRCE</h1>
-  <p>A professional course registration and management platform for students and faculty of FRCRCE.</p>
-  <div class="badges">
-    <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License" />
-    <img src="https://img.shields.io/badge/Made%20With-React-blue.svg" alt="React" />
-    <img src="https://img.shields.io/badge/Platform-Web-lightgrey.svg" alt="Web Platform" />
-  </div>
-</header>
-
-<section>
-  <h2>🎥 Demo Video</h2>
-  <p>
-    <a href="https://www.youtube.com/watch?v=VIDEO_ID" target="_blank">
-      <img src="https://img.youtube.com/vi/VIDEO_ID/0.jpg" alt="Demo Video" class="screenshot" />
-    </a>
+  <h1 style="text-align: center;">📚 LLC@FRCRCE- Course Registration Platform</h1>
+  <p style="text-align: center; font-size: 1.1em;">
+    A professional course registration and management platform for FRCRCE students and faculty.
   </p>
-</section>
 
-<section>
+  <hr>
+
   <h2>🧾 Project Overview</h2>
-  <div class="card">
-    <p>LLCFRCRCE is designed to streamline course registration. Students can enroll in electives, and faculty can manage course details—all digitally, without Excel files or manual inputs.</p>
-  </div>
-</section>
+  <p>
+    LLCFRCRCE is a digital mini-project designed to streamline course registration. Students can browse and enroll in available courses, and teachers can manage course content, timings, and student lists — all from a single unified platform.
+  </p>
 
-<section>
   <h2>🛠️ Technologies Used</h2>
   <ul>
-    <li><strong>Frontend:</strong> React.js, HTML5, CSS3</li>
-    <li><strong>Backend:</strong> Node.js, Express.js</li>
-    <li><strong>Database:</strong> MongoDB</li>
-    <li><strong>Version Control:</strong> Git, GitHub</li>
+    <li><b>Frontend:</b> HTML, CSS (inline), React (for main app)</li>
+    <li><b>Backend:</b> Node.js with Express</li>
+    <li><b>Database:</b> MongoDB</li>
+    <li><b>Version Control:</b> Git & GitHub</li>
   </ul>
-</section>
 
-<section>
-  <h2>⚙️ Installation Guide</h2>
-  <ol>
-    <li>Clone the repository:
-      <pre><code>git clone https://github.com/Sean-Pereira-945/LLC-FRCRCE.git</code></pre>
-    </li>
-    <li>Navigate to the directory:
-      <pre><code>cd LLCFRCRCE</code></pre>
-    </li>
-    <li>Install dependencies:
-      <pre><code>npm install</code></pre>
-    </li>
-    <li>Run the application:
-      <pre><code>npm start</code></pre>
-    </li>
-  </ol>
-</section>
+  <h2>📽️ Demo Video</h2>
+  <p>
+    <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">Watch our demo on YouTube</a>
+  </p>
 
-<section>
   <h2>🖼️ Presentation Slides</h2>
-  <p>Exported images of the UI:</p>
-  <img src="slides/slide1.png" alt="Slide 1" class="screenshot">
-  <img src="slides/slide2.png" alt="Slide 2" class="screenshot">
-  <img src="slides/slide3.png" alt="Slide 3" class="screenshot">
-</section>
-
-<section>
-  <h2>🤝 Contributing</h2>
+  <p>
+    Below are screenshots of the UI presentation:
+  </p>
   <ul>
-    <li>Fork the repository</li>
-    <li>Create a feature branch: <code>git checkout -b feature-name</code></li>
-    <li>Commit: <code>git commit -m "Add feature"</code></li>
-    <li>Push: <code>git push origin feature-name</code></li>
-    <li>Open a Pull Request</li>
+    <li><a href="slides/slide1.png" target="_blank">Slide 1: Student Course Selection</a></li>
+    <li><a href="slides/slide2.png" target="_blank">Slide 2: Teacher Dashboard</a></li>
+    <li><a href="slides/slide3.png" target="_blank">Slide 3: Admin Overview</a></li>
   </ul>
-</section>
 
-<section>
+  <h2>⚙️ Setup Instructions</h2>
+  <ol>
+    <li>Clone the repository: <br><code>git clone https://github.com/Sean-Pereira-945/LLC-FRCRCE.git</code></li>
+    <li>Navigate to the folder: <br><code>cd LLCFRCRCE</code></li>
+    <li>Install dependencies: <br><code>npm install</code></li>
+    <li>Start the server: <br><code>npm start</code></li>
+    <li>Visit: <br><code>http://localhost:3000</code> in your browser</li>
+  </ol>
+
+  <h2>✅ Key Features</h2>
+  <ul>
+    <li><b>Student Interface:</b> View, explore, and register for elective courses.</li>
+    <li><b>Teacher Interface:</b> Create/edit courses and track student enrollments.</li>
+    <li><b>Admin Tools:</b> Monitor registrations and generate reports easily.</li>
+  </ul>
+
+  <h2>🤝 Contributing</h2>
+  <ol>
+    <li>Fork the repo on GitHub</li>
+    <li>Create a branch: <code>git checkout -b feature-xyz</code></li>
+    <li>Commit your changes: <code>git commit -m "Added xyz"</code></li>
+    <li>Push to GitHub: <code>git push origin feature-xyz</code></li>
+    <li>Open a Pull Request</li>
+  </ol>
+
   <h2>📄 License</h2>
-  <p>This project is licensed under the MIT License.</p>
-</section>
+  <p>This project is licensed under the <b>MIT License</b>.</p>
 
-<section>
   <h2>💬 Contact</h2>
-  <p>Email: <a href="mailto:blazexander44@gmail.com">blazexander44@gmail.com</a></p>
-</section>
+  <p>Have suggestions, bugs, or questions? Reach out at:</p>
+  <p><b>Email:</b> <a href="mailto:blazexander44@gmail.com">blazexander44@gmail.com</a></p>
 
-<section class="center">
-  <h3>❤️ Acknowledgments</h3>
-  <p>Special thanks to <strong>Prof. Roshni</strong> for continuous guidance and encouragement.</p>
-  <p><strong>Made with ❤️ at FRCRCE</strong></p>
-</section>
+  <h2>❤️ Acknowledgments</h2>
+  <p>Special thanks to <b>Prof. Roshni</b> for her guidance and support throughout the project.</p>
+
+  <hr>
+  <p style="text-align: center;">Made with ❤️ by Team LLC@FRCRCE</p>
 
 </body>
 </html>
