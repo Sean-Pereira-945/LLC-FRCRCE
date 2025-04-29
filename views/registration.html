@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Learning Platform</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="/images/logo.png" alt="LLC@FrCRCE Logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/login">Login</a></li>
+      </ul>
+      <div class="search-bar">
+        <input type="text" placeholder="Search Courses..." id="search-input">
+        <button id="search-btn">Search</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="register-container">
+      <h2>Create an Account</h2>
+      <form id="register-form">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <label for="user-type">I am a:</label>
+        <select id="user-type" name="user-type" required>
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+        </select>
+        
+        <button type="submit">Register</button>
+      </form>
+      <p>Already have an account? <a href="/login">Login</a></p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 LLC@FrCRCE Learning Platform</p>
+  </footer>
+
+  <script src="/js/script.js"></script>
+</body>
+</html>

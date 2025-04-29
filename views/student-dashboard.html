@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - LLC@FrCRCE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/cyberpunk.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Add Modal for Syllabus Image -->
+    <div class="modal fade" id="syllabusModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Course Syllabus</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="syllabusImage" src="" alt="Course Syllabus" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">LLC@FrCRCE</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/student-dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search">Search Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logoutBtn">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="mb-4">Student Dashboard</h1>
+        <div id="message" class="message"></div>
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Available Courses</h2>
+                        
+                        <!-- Filter Section -->
+                        <div class="mb-4">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-outline-primary filter-btn active" data-category="all">All Courses</button>
+                                <button type="button" class="btn btn-outline-primary filter-btn" data-category="Technical">Technical</button>
+                                <button type="button" class="btn btn-outline-primary filter-btn" data-category="Non-technical">Non-technical</button>
+                                <button type="button" class="btn btn-outline-primary filter-btn" data-category="Self-Development">Self-Development</button>
+                                <button type="button" class="btn btn-outline-primary filter-btn" data-category="Extra-curricular">Extra-curricular</button>
+                            </div>
+                        </div>
+
+                        <div id="coursesList" class="courses-list">
+                            <p>Loading courses...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = localStorage.getItem('token');
+            const userType = localStorage.getItem('userType');
+            const syllabusModal = new bootstrap.Modal(document.getElementById('syllabusModal'));
+            
+            // Check if user is logged in and is a student
+            if (!token || userType !== 'student') {
+                window.location.href = '/login';
+                return;
+            }
+            
+            const coursesList = document.getElementById('coursesList');
+            const message = document.getElementById('message');
+            const logoutBtn = document.getElementById('logoutBtn');
+            let allCourses = [];
+            
+            // Handle logout
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('token');
+                localStorage.removeItem('userType');
+                localStorage.removeItem('userName');
+                window.location.href = '/';
+            });
+            
+            // Load all available courses
+            async function loadCourses() {
+                try {
+                    const response = await fetch('/api/courses/student', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        allCourses = data.courses;
+                        displayCourses('all');
+                    } else {
+                        coursesList.innerHTML = `<p class="error">${data.message}</p>`;
+                    }
+                } catch (error) {
+                    coursesList.innerHTML = '<p class="error">Error loading courses. Please try again.</p>';
+                    console.error('Error loading courses:', error);
+                }
+            }
+
+            // Display courses based on selected category
+            function displayCourses(category) {
+                if (allCourses.length === 0) {
+                    coursesList.innerHTML = '<p>No courses available at the moment.</p>';
+                    return;
+                }
+
+                const filteredCourses = category === 'all' 
+                    ? allCourses 
+                    : allCourses.filter(course => course.category === category);
+
+                if (filteredCourses.length === 0) {
+                    coursesList.innerHTML = `<p>No ${category.toLowerCase()} courses available.</p>`;
+                    return;
+                }
+
+                let coursesHTML = '<div class="row">';
+                
+                filteredCourses.forEach(course => {
+                    const isEnrolled = course.students && course.students.some(student => student._id === localStorage.getItem('userId'));
+                    const isFull = course.students && course.students.length >= course.capacity;
+                    
+                    coursesHTML += `
+                        <div class="col-12 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        ${course.logo ? `
+                                            <div class="course-logo me-3">
+                                                <img src="${course.logo}" alt="${course.name} logo" class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover;">
+                                            </div>
+                                        ` : ''}
+                                        <div>
+                                            <h3>${course.name}</h3>
+                                            <p>Instructor: ${course.teacher ? course.teacher.name : 'Unknown'}</p>
+                                            <p>Schedule: ${course.schedule}</p>
+                                            <p>Capacity: ${course.students ? course.students.length : 0}/${course.capacity}</p>
+                                            <p>Category: ${course.category}</p>
+                                        </div>
+                                    </div>
+                                    <div class="course-actions mt-3">
+                                        <button class="btn btn-outline-primary view-syllabus" data-id="${course._id}">View Syllabus</button>
+                                        ${!isEnrolled && !isFull ? 
+                                            `<button class="btn btn-primary enroll-course" data-id="${course._id}">Enroll</button>` : 
+                                            isEnrolled ? 
+                                                '<span class="badge bg-success">Enrolled</span>' : 
+                                                '<span class="badge bg-danger">Course Full</span>'
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                coursesHTML += '</div>';
+                coursesList.innerHTML = coursesHTML;
+
+                // Add event listeners for syllabus buttons
+                document.querySelectorAll('.view-syllabus').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const courseId = this.getAttribute('data-id');
+                        viewSyllabus(courseId);
+                    });
+                });
+
+                // Add event listeners for enroll buttons
+                document.querySelectorAll('.enroll-course').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const courseId = this.getAttribute('data-id');
+                        enrollInCourse(courseId);
+                    });
+                });
+            }
+
+            // Add event listeners for filter buttons
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    // Filter courses
+                    const category = this.getAttribute('data-category');
+                    displayCourses(category);
+                });
+            });
+            
+            // Load courses on page load
+            loadCourses();
+
+            // Enroll in course
+            async function enrollInCourse(courseId) {
+                try {
+                    const response = await fetch(`/api/courses/enroll/${courseId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        message.className = 'message success';
+                        message.textContent = 'Successfully enrolled in the course!';
+                        loadCourses(); // Reload courses to update the UI
+                    } else {
+                        message.className = 'message error';
+                        message.textContent = data.message || 'Failed to enroll in course';
+                    }
+                } catch (error) {
+                    message.className = 'message error';
+                    message.textContent = 'Error enrolling in course. Please try again.';
+                    console.error('Error enrolling in course:', error);
+                }
+            }
+
+            // View Syllabus
+            async function viewSyllabus(courseId) {
+                try {
+                    const response = await fetch(`/api/courses/syllabus/${courseId}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        const imageUrl = URL.createObjectURL(await response.blob());
+                        document.getElementById('syllabusImage').src = imageUrl;
+                        syllabusModal.show();
+                    } else {
+                        const data = await response.json();
+                        message.className = 'message error';
+                        message.textContent = data.message || 'Failed to view syllabus';
+                    }
+                } catch (error) {
+                    message.className = 'message error';
+                    message.textContent = 'Error viewing syllabus. Please try again.';
+                    console.error('Error viewing syllabus:', error);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
