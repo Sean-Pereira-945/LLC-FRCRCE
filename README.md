@@ -1,9 +1,4 @@
 ```markdown
-<p align="center">
-  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License Badge" />
-  <img src="https://img.shields.io/badge/Made%20With-React-blue.svg" alt="React Badge" />
-  <img src="https://img.shields.io/badge/Platform-Web-lightgrey.svg" alt="Web Badge" />
-</p>
 
 <h1 align="center">📚 LLCFRCRCE</h1>
 
@@ -136,5 +131,3 @@ Special thanks to:
   <strong>Thank you for visiting LLCFRCRCE 🚀</strong>
 </p>
 ```
-
-Let me know if you'd like the file exported or downloaded directly as `README.md`.
