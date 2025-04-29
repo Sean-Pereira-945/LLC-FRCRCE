@@ -1,5 +1,5 @@
-< html>
-<html lang="en">
+<html>
+
 <head>
   <meta charset="UTF-8">
   <title>LLCFRCRCE - Course Registration Platform</title>
@@ -8,58 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #f4f6f8;
-      margin: 0;
-      padding: 0 20px;
-      color: #333;
-    }
-    header, section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 0;
-    }
-    h1, h2, h3 {
-      color: #2c3e50;
-    }
-    .center {
-      text-align: center;
-    }
-    .badges img {
-      margin: 0 5px;
-    }
-    .screenshot {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .card {
-      background: white;
-      border-radius: 10px;
-      padding: 25px;
-      margin: 20px 0;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    code, pre {
-      background: #eee;
-      padding: 4px 8px;
-      border-radius: 4px;
-      display: inline-block;
-    }
-    ul {
-      line-height: 1.6;
-    }
-    a {
-      color: #1a73e8;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+
 </head>
 <body>
 
