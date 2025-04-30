@@ -31,14 +31,9 @@
 
   <h2>🖼️ Presentation Slides</h2>
   <p>
-    Below are screenshots of the UI presentation:
+    Kindly view the PPT for better understanding.
   </p>
-  <ul>
-    <li><a href="slides/slide1.png" target="_blank">Slide 1: Student Course Selection</a></li>
-    <li><a href="slides/slide2.png" target="_blank">Slide 2: Teacher Dashboard</a></li>
-    <li><a href="slides/slide3.png" target="_blank">Slide 3: Admin Overview</a></li>
-  </ul>
-
+  
   <h2>⚙️ Setup Instructions</h2>
   <ol>
     <li>Clone the repository: <br><code>git clone https://github.com/Sean-Pereira-945/LLC-FRCRCE.git</code></li>
