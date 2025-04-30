@@ -26,7 +26,7 @@
 
   <h2>📽️ Demo Video</h2>
   <p>
-    <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">Watch our demo on YouTube</a>
+    <a href="https://drive.google.com/file/d/1MpwKT3UhwmfpsDR2B-asCWfq_LGjthJ4/view?usp=sharing"_blank">Watch our demo !</a>
   </p>
 
   <h2>🖼️ Presentation Slides</h2>
